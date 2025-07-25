@@ -10,10 +10,12 @@
  * always produce a checksum of 0 and invalid produce non zero.
  *
  * Compile with:
- * gcc -O3 -march=native -flto -Wall -o ver verhoeff.c
+ * gcc -std=c2x -O3 -march=native -flto -Wall -o ver verhoeff.c
  */
 #include <stdio.h>
 #include <stdlib.h>
+
+#define GENERATE 0
 
 // Multiplication Table
 int d[10][10] = {
@@ -56,7 +58,7 @@ int checksum(int n[], int len) {
     return n[0] == 0 ? inv[c] : c;
 }
 
-int main(int argc, char *argv[])  {
+int main([[maybe_unused]] int argc, char *argv[argc+1])  {
     // Verify comand line argument
     if (argc != 2) {
         fprintf(stderr, "Usage: %s <check digit><number>, use 0 to generate\n", argv[0]);
@@ -89,7 +91,7 @@ int main(int argc, char *argv[])  {
 
     int res = checksum(pn, i);
 
-    if (pn[0] == 0) {
+    if (pn[0] == GENERATE) {
 	printf("check digit = %d\n", res);
     } else {
         printf("%s\n", res == 0 ? "valid" : "invalid");
