@@ -15,8 +15,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define GENERATE 0
-
 // Multiplication Table
 int d[10][10] = {
 	          { 0,1,2,3,4,5,6,7,8,9 },
@@ -73,7 +71,7 @@ int main([[maybe_unused]] int argc, char *argv[argc+1])  {
 	    fprintf(stderr, "Number is too big\n");
 	    return -1;
 	}
-	if (argv[1][i]<'0' || argv[1][i]>'9') {
+	if (argv[1][i] < '0' || argv[1][i] > '9') {
 	    fprintf(stderr, "Not a valid number\n");
 	    return -1;
 	}
@@ -91,7 +89,7 @@ int main([[maybe_unused]] int argc, char *argv[argc+1])  {
 
     int res = checksum(pn, i);
 
-    if (pn[0] == GENERATE) {
+    if (!pn[0]) {
 	printf("check digit = %d\n", res);
     } else {
         printf("%s\n", res == 0 ? "valid" : "invalid");
