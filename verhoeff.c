@@ -81,7 +81,7 @@ int main([[maybe_unused]] int argc, char *argv[argc+1])  {
 
     /* We need to reverse the digits except the first digit which is either 0
      * or the check digit which should always be first */
-    for (int j = 1; j < (i-1)/2 + 1; j++) {
+    for (register int j = 1; j < (i-1)/2 + 1; j++) {
         int temp = pn[j];
         pn[j] = pn[i-j];
         pn[i-j] = temp;
